@@ -1,0 +1,6 @@
+*.xls*
+.vscode
+node_modules
+*.code-workspace
+dist
+.env
