@@ -34,7 +34,6 @@
     --steel: #6FB7DD;
     --water: #2B99FF;
 
-
 }
 
 html {
@@ -88,7 +87,12 @@ header {
     border: 1px solid black;
     border-radius: 15px;
     box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
 
+.pokemon-card:hover {
+    transform: scale(1.05); /* Aumenta un 5% de su tamaño */
 }
 
 .pokemon-imagen {
