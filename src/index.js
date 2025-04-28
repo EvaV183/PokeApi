@@ -60,8 +60,8 @@ function createPokemonCard(pokemon) {
 
     //Añadimos estos elementos a la tarjeta
     card.appendChild(numberPokemon);
-    card.appendChild(spriteContainer);
     card.appendChild(name);
+    card.appendChild(spriteContainer);
     card.appendChild(typesPokemon);
 
     //Añadimos lo anterior al contenedor
