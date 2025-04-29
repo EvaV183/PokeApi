@@ -78,18 +78,23 @@ function createModal() {
     modal.id = 'pokemonModal';
     modal.classList.add('pokemon-modal', 'hidden');
 
+    // Div para poder aplicar un desenfoque
+    const overlay = document.createElement('div');
+    overlay.id = 'modalOverlay';
+    overlay.classList.add('modal-overlay', 'hidden');
+
     modal.innerHTML = `
-        <div class="pokemon-modal-content">
+        <div class="pokemon-modal-content" id="pokemonModalContent">
             <span class="close-button" id="closeModal">&times;</span>
-            <div id="pokemonModalContent"></div>
         </div>
     `;
 
     document.body.appendChild(modal);
+    document.body.appendChild(overlay);
 
-    // Ahora que el botón está en el DOM, puedes añadirle el event listener
     document.getElementById('closeModal').addEventListener('click', () => {
         modal.classList.add('hidden');
+        overlay.classList.add('hidden');
     });
 }
 
@@ -97,27 +102,39 @@ function createModal() {
 function showPokemonDetails(id) {
     const modal = document.getElementById('pokemonModal');
     const modalContent = document.getElementById('pokemonModalContent');
+    const overlay = document.getElementById('modalOverlay');
 
-    // Limpia contenido anterior
-    modalContent.innerHTML = '';
+    // Limpia contenido anterior excepto el botón de cierre
+    [...modalContent.children].forEach(child => {
+        if (!child.classList.contains('close-button')) {
+            modalContent.removeChild(child);
+        }
+    });
 
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-        .then(res => res.json())
-        .then(pokemon => {
-            const details = document.createElement('div');
-            details.innerHTML = `
-                <h2>${pokemon.name}</h2>
-                <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}">
-                <p><strong>Número:</strong> #${pokemon.id.toString().padStart(3, '0')}</p>
-                <p><strong>Altura:</strong> ${pokemon.height / 10} m</p>
-                <p><strong>Peso:</strong> ${pokemon.weight / 10} kg</p>
-                <p><strong>Tipos:</strong> ${pokemon.types.map(t => t.type.name).join(', ')}</p>
-            `;
+    .then(res => res.json())
+    .then(pokemon => {
+        const image = document.createElement('img');
+        image.src = pokemon.sprites.other['official-artwork'].front_default;
+        image.alt = pokemon.name;
+        image.style.width = '180px';
+        image.style.borderRadius = '10px';
 
-            // Para que pueda mostrar los detalles
-            modalContent.appendChild(details);
-            modal.classList.remove('hidden');
-        });
+        const textContainer = document.createElement('div');
+        textContainer.innerHTML = `
+            <h2>${pokemon.name.toUpperCase()}</h2>
+            <p><strong>Número:</strong> #${pokemon.id.toString().padStart(3, '0')}</p>
+            <p><strong>Altura:</strong> ${pokemon.height / 10} m</p>
+            <p><strong>Peso:</strong> ${pokemon.weight / 10} kg</p>
+            <p><strong>Tipo:</strong> ${pokemon.types.map(t => t.type.name).join(', ')}</p>
+        `;
+
+        modalContent.appendChild(image);
+        modalContent.appendChild(textContainer);
+
+        overlay.classList.remove('hidden');
+        modal.classList.remove('hidden');
+    });
 }
 
 // LLamamos a las funciones

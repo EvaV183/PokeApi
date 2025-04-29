@@ -33,7 +33,6 @@
     --sleep: #534B4B;
     --steel: #6FB7DD;
     --water: #2B99FF;
-
 }
 
 /* GENERALES */
@@ -124,30 +123,42 @@ header {
     width: 3.2rem;
 }
 
-
 .pokemon-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(255, 0, 0);opacity:0.2;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
 }
-
 .pokemon-modal-content {
     display: flex;
+    flex-direction: row; /* Para que imagen y texto estén en línea */
     align-items: center;
-    justify-content: center;
-    background-color: red;
-    padding: 2rem;
-    border-radius: 50px;
+    justify-content: flex-start;
     position: relative;
-    max-width: 800px;
-    width: 90%;
+    max-width: 600px;
+    min-height: 350px;
+    width: 75%;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 10px 10px 15px 0px rgba(0,0,0,0.3);
+}
+#pokemonModalContent {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+}
+#pokemonModalContent img {
+    align-self: center;
+    width: 180;
+    height: auto;
+    border-radius: 10px;
 }
 
 .close-button {
@@ -157,7 +168,16 @@ header {
     font-size: 3rem;
     cursor: pointer;
 }
-
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px); 
+    background-color: rgba(0, 0, 0, 0.1); /* Oscurece un poco también */
+    z-index: 998; /* Debajo del modal */
+}
 .hidden {
     display: none;
 }
