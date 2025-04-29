@@ -54,18 +54,51 @@ function createPokemonCard(pokemon) {
         typeImage.classList.add('type-icon');
         typeImage.src = `./assets/img/pokemon-type-icons/${type.type.name}.png`;
         typeImage.alt = `Tipo ${type.type.name}`;
-
         typesPokemon.appendChild(typeImage); // Añadir la imagen al contenedor de tipos
     });
 
     //Añadimos estos elementos a la tarjeta
+
+    spriteContainer.appendChild(sprite); //??? ES NECESARIA??
+
     card.appendChild(numberPokemon);
     card.appendChild(spriteContainer);
     card.appendChild(name);
     card.appendChild(typesPokemon);
 
+    //Añadimos un evento a cada tarjeta que al hacer clic ejecute la función openPokemonModal
+    card.addEventListener('click', () => openPokemonModal(pokemon));
+
     //Añadimos lo anterior al contenedor
     pokemonContainer.appendChild(card);
+}
+
+// Función para abrir el modal con los detalles del Pokémon
+function openPokemonModal(pokemon) {
+    let modal = document.getElementById('pokemon-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'pokemon-modal';
+        modal.classList.add('modal');
+        modal.innerHTML = `
+        <button class="close" id="close-modal">X</button>
+            <p id="pokemon-name">${pokemon.name}</p>
+            <img id="pokemon-image" src="${pokemon.sprites.other['official-artwork'].front_default}" alt="Imagen de ${pokemon.name}" style="width: 100%;">
+            <p id="pokemon-type">Tipo: ${pokemon.types.map(t => t.type.name).join(', ')}</p>
+            <p id="ability">Habilidad: ${pokemon.ability.map(a => a.ability.name).join(', ')}</p>
+        `;
+        document.body.appendChild(modal);
+    } else {
+        document.getElementById('pokemon-name').textContent = pokemon.name;
+        document.getElementById('pokemon-image').src = pokemon.sprites.other['official-artwork'].front_default;
+        document.getElementById('pokemon-type').textContent = "Tipo: " + pokemon.types.map(t => t.type.name).join(', ');
+        document.getElementById('pokemon-ability').textContent = "Habilidad: " + pokemon.ability.map(a => a.ability.name).join(', ');
+        modal.style.display = 'block';
+    }
+
+    document.getElementById('close-modal').addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
 }
 
 fetchPokemons(50);

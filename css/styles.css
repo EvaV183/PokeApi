@@ -36,6 +36,7 @@
 
 }
 
+/* GENERALES */
 html {
 
 }
@@ -53,17 +54,16 @@ header {
 .app__header {
 
 }
-
 .header_logo {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .pokemon__logo {
 
 }
 
+/* CUADRICULA CON TODOS LOS POKEMON */
 .pokemon-container {
     /* Flexbox */
     display: flex;
@@ -75,11 +75,9 @@ header {
     padding: 5rem;
     gap: 30px; 
 }
-
 .pokemon-list {
 
 }
-
 .pokemon-card {
     width: 13rem;
     height: 19rem;
@@ -90,28 +88,23 @@ header {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
 }
-
 .pokemon-card:hover {
     transform: scale(1.05); /* Aumenta un 5% de su tamaño */
 }
-
 .pokemon-imagen {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .pokemon-imagen img {
     height: 8.5rem;
 }
-
 .pokemon-number {
     display: flex;
     margin: 1rem;
     font-size: 1rem;
     justify-content: left;
 }
-
 .pokemon-name {
     text-align: center;
     align-items: center;
@@ -120,7 +113,6 @@ header {
     text-transform: uppercase;
     color: black;
 }
-
 .pokemon-types {
     display: flex;
     padding: 0.2rem;
@@ -128,7 +120,42 @@ header {
     align-items: center;
     justify-content: center;
 }
-
 .pokemon-types img {
     width: 3.2rem;
+}
+
+/* TARJETA DE DETALLES POKEMON */
+.modal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50rem;
+    height: 30rem;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+}
+.modal .close {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: 10%;
+}
+.modal img {
+    max-width: 30%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
 }
