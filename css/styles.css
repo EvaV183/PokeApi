@@ -132,3 +132,41 @@ header {
 .pokemon-types img {
     width: 3.2rem;
 }
+
+
+.pokemon-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.pokemon-modal-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    padding: 2rem;
+    border-radius: 50px;
+    position: relative;
+    max-width: 800px;
+    width: 90%;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}

@@ -35,6 +35,11 @@ function createPokemonCardDetails(pokemon) {
 
     //Añadimos lo anterior al contenedor
     pokemonContainer.appendChild(details);
+
+    // Función para capturar el Evento clic y poder mostrar la tarjeta de detalles
+    card.addEventListener('click', () => {
+        showPokemonDetails(pokemon.id);
+    });
 }
 
 fetchPokemon(1);
