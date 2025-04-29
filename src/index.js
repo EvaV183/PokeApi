@@ -1,8 +1,6 @@
 // DOM
 const pokemonContainer = document.querySelector('.pokemon-container');
 
-
-
 // FUNCIONES
 // Para traer un pokemon
 function fetchPokemon(id) {
